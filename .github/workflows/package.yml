@@ -194,7 +194,7 @@ jobs:
         shell: bash
         run: |
           cd pkg2appimage
-          pkg2appimage ../sniffnet.yml
+          ./pkg2appimage ../sniffnet.yml
           mv out/*.AppImage Sniffnet-${{ matrix.arch }}.AppImage
 
       - name: Upload package artifacts
