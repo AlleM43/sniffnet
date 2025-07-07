@@ -11,30 +11,30 @@ jobs:
       fail-fast: true
       matrix:
         include:
-#         - os: ubuntu
-#           arch: i386
-#           target: i686-unknown-linux-gnu
-#         - os: ubuntu
-#           arch: armhf
-#           target: armv7-unknown-linux-gnueabihf
+          - os: ubuntu
+            arch: i386
+            target: i686-unknown-linux-gnu
+          - os: ubuntu
+            arch: armhf
+            target: armv7-unknown-linux-gnueabihf
           - os: ubuntu
             arch: amd64
             target: x86_64-unknown-linux-gnu
-#         - os: ubuntu
-#           arch: arm64
-#           target: aarch64-unknown-linux-gnu
-#          - os: macos
-#            arch: amd64
-#            target: x86_64-apple-darwin
-#          - os: macos
-#            arch: arm64
-#            target: aarch64-apple-darwin
-#          - os: windows
-#            arch: i386
-#            target: i686-pc-windows-msvc
-#          - os: windows
-#            arch: amd64
-#            target: x86_64-pc-windows-msvc
+          - os: ubuntu
+            arch: arm64
+            target: aarch64-unknown-linux-gnu
+          - os: macos
+            arch: amd64
+            target: x86_64-apple-darwin
+          - os: macos
+            arch: arm64
+            target: aarch64-apple-darwin
+          - os: windows
+            arch: i386
+            target: i686-pc-windows-msvc
+          - os: windows
+            arch: amd64
+            target: x86_64-pc-windows-msvc
 
     steps:
       - name: Checkout repository
@@ -79,11 +79,11 @@ jobs:
       - name: Clippy (release mode)
         run: cargo clippy --release -- -D warnings
 
-#     - name: Test (release mode)
-#       if: matrix.os == 'macos' || matrix.os == 'ubuntu' || matrix.os == 'windows' && matrix.arch == 'amd64'
-#       run: |
-#         cargo test --release --verbose -- --nocapture &&
-#         cargo clean
+      - name: Test (release mode)
+        if: matrix.os == 'macos' || matrix.os == 'ubuntu' || matrix.os == 'windows' && matrix.arch == 'amd64'
+        run: |
+          cargo test --release --verbose -- --nocapture &&
+          cargo clean
 
       - name: Install Cross
         if: matrix.os == 'ubuntu'
@@ -91,7 +91,7 @@ jobs:
 
       - name: Build binary (Linux)
         if: matrix.os == 'ubuntu'
-        run: cargo build --release --target ${{ matrix.target }}
+        run: cross build --release --target ${{ matrix.target }}
 
       - name: Build binary (macOS/Windows)
         if: matrix.os == 'macos' || matrix.os == 'windows'
@@ -115,14 +115,14 @@ jobs:
       fail-fast: true
       matrix:
         include:
-#         - target: i686-unknown-linux-gnu
-#           arch: i386
-#         - target: armv7-unknown-linux-gnueabihf
-#           arch: armhf
+          - target: i686-unknown-linux-gnu
+            arch: i386
+          - target: armv7-unknown-linux-gnueabihf
+            arch: armhf
           - target: x86_64-unknown-linux-gnu
             arch: amd64
-#         - target: aarch64-unknown-linux-gnu
-#           arch: arm64
+          - target: aarch64-unknown-linux-gnu
+            arch: arm64
 
     steps:
       - name: Checkout repository
@@ -198,8 +198,6 @@ jobs:
           ./pkg2appimage ../sniffnet.yml
           mkdir /out
           mv out/*.AppImage /out/Sniffnet-${{ matrix.arch }}.AppImage
-          ls -lah /out
-          pwd
 
       - name: Upload package artifacts
         uses: actions/upload-artifact@v4
@@ -219,8 +217,8 @@ jobs:
         include:
           - arch: x86_64
             target: x86_64-unknown-linux-gnu
-#         - arch: aarch64
-#           target: aarch64-unknown-linux-gnu
+          - arch: aarch64
+            target: aarch64-unknown-linux-gnu
 
     steps:
       - name: Checkout repository
