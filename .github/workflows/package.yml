@@ -91,7 +91,7 @@ jobs:
 
       - name: Build binary (Linux)
         if: matrix.os == 'ubuntu'
-        run: cross build --release --target ${{ matrix.target }}
+        run: cargo build --release --target ${{ matrix.target }}
 
       - name: Build binary (macOS/Windows)
         if: matrix.os == 'macos' || matrix.os == 'windows'
