@@ -162,6 +162,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: debian:latest
+      options: --privileged
     needs: deb
     strategy:
       fail-fast: true
