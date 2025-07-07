@@ -182,11 +182,11 @@ jobs:
           name: deb-${{ matrix.arch }}
           path: /target/
 
-      - name: Download pkg2appimage
+      - name: Download and install pkg2appimage
         shell: bash
         run: |
           wget -O pkg2appimage -c $(wget -q https://api.github.com/repos/AppImageCommunity/pkg2appimage/releases -O - | grep "pkg2appimage-.*-x86_64.AppImage" | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
-          chmod +x ./pkg2appimage
+          install -Dm755 pkg2appimage /usr/bin/pkg2appimage
 
       - name: Replace placeholder in AppImage YAML
         shell: bash
