@@ -196,15 +196,16 @@ jobs:
         run: |
           cd pkg2appimage
           ./pkg2appimage ../sniffnet.yml
-          mv out/*.AppImage Sniffnet-${{ matrix.arch }}.AppImage
-          ls -lah
+          mkdir /out
+          mv out/*.AppImage /out/Sniffnet-${{ matrix.arch }}.AppImage
+          ls -lah /out
           pwd
 
       - name: Upload package artifacts
         uses: actions/upload-artifact@v4
         with:
           name: appimage-${{ matrix.arch }}
-          path: pkg2appimage/out/
+          path: /out/
           if-no-files-found: error
 
   rpm:
