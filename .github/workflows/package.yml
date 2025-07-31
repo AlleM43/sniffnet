@@ -189,15 +189,15 @@ jobs:
 
       - name: Replace placeholder in AppImage YAML
         shell: bash
-        run: sed -i -e 's/REPLACE_TAG/Sniffnet_LinuxDEB_${{ matrix.arch }}.deb/g' sniffnet.yml
+        run: sed -i -e 's/REPLACE_TAG/Sniffnet_LinuxDEB_${{ matrix.arch }}.deb/g' resources/packaging/linux/AppImage/sniffnet.yml
 
       - name: Repackage for AppImage
         shell: bash
         run: |
           cd pkg2appimage
-          ./pkg2appimage ../sniffnet.yml
+          ./pkg2appimage ../resources/packaging/linux/AppImage/sniffnet.yml
           mkdir /out
-          mv out/*.AppImage /out/Sniffnet-${{ matrix.arch }}.AppImage
+          mv out/*.AppImage /out/Sniffnet_LinuxAppImage_${{ matrix.arch }}.AppImage
           ls -lah /out
           pwd
 
