@@ -1,18 +1,18 @@
 name: Rust
 
 on:
-  push:
-    branches:
-      - '*'
-  pull_request:
-    branches:
-      - '*'
-  workflow_call:
-    secrets:
-      NPCAP_OEM_URL:
-        required: true
-      CODECOV_TOKEN:
-        required: true
+#  push:
+#    branches:
+#      - '*'
+#  pull_request:
+#    branches:
+#      - '*'
+#  workflow_call:
+#    secrets:
+#      NPCAP_OEM_URL:
+#        required: true
+#      CODECOV_TOKEN:
+#        required: true
 
 env:
   CARGO_TERM_COLOR: always
