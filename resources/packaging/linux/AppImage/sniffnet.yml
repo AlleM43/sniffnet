@@ -1,9 +1,9 @@
 app: Sniffnet
 ingredients:
-  dist: plucky
+  dist: bookworm
   packages:
-    - libpcap0.8t64
+    - libpcap0.8
   sources:
-    - deb https://archive.ubuntu.com/ubuntu/ plucky main universe
+    - deb https://deb.debian.org/debian stable main
   debs:
     - /target/REPLACE_TAG
