@@ -170,7 +170,7 @@ jobs:
       matrix:
         include:
           - arch: amd64
-            appimgarch: amd64
+            appimgarch: x86_64
           - arch: arm64
             appimgarch: aarch64
           - arch: i386
