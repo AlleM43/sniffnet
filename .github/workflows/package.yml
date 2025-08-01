@@ -206,7 +206,7 @@ jobs:
         shell: bash
         run: |
           cd pkg2appimage
-          ARCH=${{ matrix.appimgarch }} ./pkg2appimage ../resources/packaging/linux/AppImage/sniffnet.yml
+          ARCH=${{ matrix.appimgarch }} FUNCTIONS_SH=$(pwd)/functions.sh ./pkg2appimage ../resources/packaging/linux/AppImage/sniffnet.yml
           mkdir /out
           mv out/*.AppImage /out/Sniffnet_LinuxAppImage_${{ matrix.arch }}.AppImage
           ls -lah /out
